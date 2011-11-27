@@ -1,5 +1,5 @@
 <?php namespace Blaze;
-class Blaze extends Eloquent {
+class Blaze extends \Eloquent {
 	
 	public static $validations = NULL;
 	
@@ -16,7 +16,7 @@ class Blaze extends Eloquent {
 	
 	public function inject($attrs)
 	{
-		$tmp = DB::table(static::$table)->first();
+		$tmp = \DB::table(static::$table)->first();
 		$attributes = array();
 		foreach ($tmp as $k => $v)
 		{
@@ -57,7 +57,7 @@ class Blaze extends Eloquent {
 		// Do we have validation rules for this model?
 		if (isset(static::$validations) and ! empty(static::$validations))
 		{
-			$val = Validator::make($this->attributes, static::$validations);
+			$val = \Validator::make($this->attributes, static::$validations);
 			
 			if ( ! $val->valid())
 			{
